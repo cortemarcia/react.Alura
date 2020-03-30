@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
 import './App.css';
+import Tabela from './Tabelas';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+class App extends Component {
+ state= {
+  autores:[
+    {
+    nome: 'Marcia',
+    livro: 'React',
+    preco: '1000'
+  },
+  {
+    nome: 'Diogo',
+    livro: '.Net',
+    preco: '367'
+  },
+  {
+    nome: 'Gabriel',
+    livro: 'JAVA',
+    preco: '234'
+  },
+  {
+    nome: 'Leonam',
+    livro: 'P.O',
+    preco: '432'
+  }
+  ],
+
+ }
+
+ removeAuthor = index =>{
+   const {autores}= this.state;
+
+   this.setState(
+     {
+       autores:autores.filter((autor, posAtual) =>{
+       
+         return posAtual !== index
+
+       }),
+     }
+   );
+   
+ }
+
+ render(){
+  return(
+    <div className= "app">
+      <Tabela autores = {this.state.autores} removeAuthor={this.removeAuthor} />
+      </div>
   );
+ }
+ 
 }
-
+ 
 export default App;
